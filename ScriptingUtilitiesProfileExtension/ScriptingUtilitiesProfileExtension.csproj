@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7EFEA8DE-6961-4461-8891-2019A45E5426}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ScriptingUtilitiesProfileExtension</RootNamespace>
+    <AssemblyName>ScriptingUtilitiesProfileExtension</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;xxx_LuraTech</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Captaris.RightDocs.Advanced.Infrastructure">
+      <HintPath>..\..\..\..\..\_bin\Captaris.RightDocs.Advanced.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="DOKuStar.Data.Xml">
+      <HintPath>..\..\..\..\..\_bin\DOKuStar.Data.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="DOKuStar.Link, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\_bin\DOKuStar.Link.dll</HintPath>
+    </Reference>
+    <Reference Include="DOKuStar.Link.EC.Connectors.Dispatch, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\_bin\DOKuStar.Link.EC.Connectors.Dispatch.dll</HintPath>
+    </Reference>
+    <Reference Include="DOKuStar.Runtime">
+      <HintPath>..\..\..\..\..\_bin\DOKuStar.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DOKuStar.Runtime.ScriptingHost">
+      <HintPath>..\..\..\..\_bin\DOKuStar.Runtime.ScriptingHost.dll</HintPath>
+    </Reference>
+    <Reference Include="PDF_CompApi.NET">
+      <HintPath>PdfCompression\LuraTech\PDF_CompApi.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PdfCompression\PdfCompression.cs" />
+    <Compile Include="ScriptingUtilitiesProfileExtension.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PdfCompression\LuraTech\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ScriptingUtilities\ScriptingUtilities.csproj">
+      <Project>{b2aeff08-322d-4c54-a5f3-51aa7f393f39}</Project>
+      <Name>ScriptingUtilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy ScriptingUtilitiesProfileExtension.dll  "C:\ProgramData\Open Text\DOKuStar Dispatch\Data\Config\CustomCode" /Y
+copy ScriptingUtilitiesProfileExtension.pdb  "C:\ProgramData\Open Text\DOKuStar Dispatch\Data\Config\CustomCode" /Y
+copy ScriptingUtilitiesProfileExtension.dll   ..\..\..\subin /Y</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,9 @@
+More ideas
+	* Create a complete invoice solution
+	* Access character details
+	* Export (to database) during Recognition
+	* Save all ingested documents into a folder
+	* Replicate input folder structure in output destination
+
+ToDo:
+	* Documentation for LookupListUpdater

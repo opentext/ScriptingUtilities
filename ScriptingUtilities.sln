@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_ScriptingUtilities", "Test_ScriptingUtilities\Test_ScriptingUtilities.csproj", "{A648001E-8BB9-407D-8316-BBE90F045EB5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{618CFA0B-CD63-4747-BDF2-4AAABF9537D1}"
+	ProjectSection(SolutionItems) = preProject
+		Scripting Utilities - Documentation.docx = Scripting Utilities - Documentation.docx
+		ToDo.txt = ToDo.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptingUtilitiesProfileExtension", "ScriptingUtilitiesProfileExtension\ScriptingUtilitiesProfileExtension.csproj", "{7EFEA8DE-6961-4461-8891-2019A45E5426}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptingUtilities", "ScriptingUtilities\ScriptingUtilities.csproj", "{B2AEFF08-322D-4C54-A5F3-51AA7F393F39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookupListUpdater", "LookuplistUpdater\LookupListUpdater.csproj", "{20856C1D-FB85-4A45-94BE-65BF33E99121}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookupListUpdaterModel", "LookupListUpdaterModel\LookupListUpdaterModel.csproj", "{527403DD-C8BC-4ACD-A4D3-B600DE2955AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookupListUpdaterHotspot", "LookupListUpdaterHotspot\LookupListUpdaterHotspot.csproj", "{58EC9111-F2FE-4968-A7F4-8526829644A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LookupListUpdater", "LookupListUpdater", "{5742CE3B-4825-45A8-A413-7EFE495FB623}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A648001E-8BB9-407D-8316-BBE90F045EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A648001E-8BB9-407D-8316-BBE90F045EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A648001E-8BB9-407D-8316-BBE90F045EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A648001E-8BB9-407D-8316-BBE90F045EB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EFEA8DE-6961-4461-8891-2019A45E5426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EFEA8DE-6961-4461-8891-2019A45E5426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EFEA8DE-6961-4461-8891-2019A45E5426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EFEA8DE-6961-4461-8891-2019A45E5426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2AEFF08-322D-4C54-A5F3-51AA7F393F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2AEFF08-322D-4C54-A5F3-51AA7F393F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2AEFF08-322D-4C54-A5F3-51AA7F393F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2AEFF08-322D-4C54-A5F3-51AA7F393F39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20856C1D-FB85-4A45-94BE-65BF33E99121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20856C1D-FB85-4A45-94BE-65BF33E99121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20856C1D-FB85-4A45-94BE-65BF33E99121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20856C1D-FB85-4A45-94BE-65BF33E99121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{527403DD-C8BC-4ACD-A4D3-B600DE2955AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{527403DD-C8BC-4ACD-A4D3-B600DE2955AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{527403DD-C8BC-4ACD-A4D3-B600DE2955AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{527403DD-C8BC-4ACD-A4D3-B600DE2955AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58EC9111-F2FE-4968-A7F4-8526829644A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58EC9111-F2FE-4968-A7F4-8526829644A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58EC9111-F2FE-4968-A7F4-8526829644A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58EC9111-F2FE-4968-A7F4-8526829644A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{20856C1D-FB85-4A45-94BE-65BF33E99121} = {5742CE3B-4825-45A8-A413-7EFE495FB623}
+		{527403DD-C8BC-4ACD-A4D3-B600DE2955AE} = {5742CE3B-4825-45A8-A413-7EFE495FB623}
+		{58EC9111-F2FE-4968-A7F4-8526829644A5} = {5742CE3B-4825-45A8-A413-7EFE495FB623}
+	EndGlobalSection
+EndGlobal

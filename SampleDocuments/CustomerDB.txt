@@ -1,0 +1,7 @@
+CustomerID	Firstname	Lastname	Street	ZIP	City	State
+123001	Miguel	Don Carlos	2221 Waylon's Way	78611	Hausenburg	TX
+123002	Lonnie	Story	3812 Timbercrest Road	99766	Cape Lisburne	AK
+123003	Curtis	Robinson	407 Duff Avenue	54783	St Albans	VT
+123004	Patricia	Dill	3181 Prospect Valley Road	90401	Santa Monica	CA
+123005	Carl	Mansfield	1190 Sunrise Valley Drive	20191	Reston	Virginia
+123006	Sam B	Burger	3050 Bowers Avenue	95024	Santa Clara	California

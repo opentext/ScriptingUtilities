@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DOKuStar.Data baseType="documentType" state="Ok" confidence="0" version="4.0">
+  <annotations>
+    <annotation key="Name">Invoice</annotation>
+    <annotation key="Filename">Invoice.pdf</annotation>
+    <annotation key="Details">Invoice</annotation>
+    <annotation key="InputDirectory">C:\01_Work\01_OCC\dev\OCC_Head\occ_b\Samples\ScriptingUtilities\SampleDocuments</annotation>
+    <annotation key="ConnectorName">Import Image</annotation>
+    <annotation key="ConnectorInstanceName">Import Image</annotation>
+    <annotation key="BatchId">19401</annotation>
+    <annotation key="LicenseTicket">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</annotation>
+    <annotation key="Profile">UncertainRows</annotation>
+    <annotation key="Scripting">Indexing</annotation>
+  </annotations>
+  <cc_BatchDetails baseType="fieldType" state="Ok" confidence="0">
+    <value>Invoice</value>
+  </cc_BatchDetails>
+  <cc_ImportChannel baseType="fieldType" state="Ok" confidence="0">
+    <value>Import Image</value>
+  </cc_ImportChannel>
+  <cc_ActivityMessage baseType="fieldType" state="Ok" confidence="0">
+    <value>
+    </value>
+  </cc_ActivityMessage>
+  <cc_ActivityName baseType="fieldType" state="Ok" confidence="0">
+    <value>Recognition</value>
+  </cc_ActivityName>
+  <cc_ProfileName baseType="fieldType" state="Ok" confidence="0">
+    <value>UncertainRows</value>
+  </cc_ProfileName>
+  <cc_JobClassName baseType="fieldType" state="Ok" confidence="0">
+    <value>JobClass11</value>
+  </cc_JobClassName>
+  <cc_BatchCreationDate baseType="fieldType" state="Ok" confidence="0" class="dateTimeUtcType" dateTimeKind="Local">
+    <value>2017-02-15 18:13:12Z</value>
+  </cc_BatchCreationDate>
+  <cc_BatchId baseType="fieldType" state="Ok" confidence="0" class="int64Type">
+    <value>19401</value>
+  </cc_BatchId>
+  <cc_SkipValidation baseType="fieldType" state="Ok" confidence="0" class="boolType">
+    <value>False</value>
+  </cc_SkipValidation>
+  <DocumentClass baseType="documentType" state="Ok" confidence="100" producer="DocumentClass">
+    <annotations>
+      <annotation key="repClassificationConfidence">100</annotation>
+      <annotation key="repClassificationMethod">
+      </annotation>
+      <annotation key="repClassificationSuccessful">true</annotation>
+      <annotation key="documentClassificationSuccessful">true</annotation>
+      <annotation key="repRecoResultDocumentMarker">true</annotation>
+    </annotations>
+    <sources>
+      <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+    </sources>
+    <Items baseType="tableType" state="Ok" confidence="100">
+      <value>
+      </value>
+      <zone>403 1122 1410 489</zone>
+      <sources>
+        <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+      </sources>
+      <row baseType="tableRowType" state="Uncertain" confidence="0">
+        <Qty baseType="fieldType" state="Ok" confidence="100">
+          <value>2</value>
+          <zone>403 1122 13 19</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Qty>
+        <UOM baseType="fieldType" state="Ok" confidence="100">
+          <value>pc</value>
+          <zone>549 1123 32 19</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </UOM>
+        <Price baseType="fieldType" state="Reject" confidence="100">
+          <value>?</value>
+          <zone>1454 1122 113 24</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Price>
+        <Total baseType="fieldType" state="Ok" confidence="100">
+          <value>2680.00</value>
+          <zone>1700 1122 113 24</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Total>
+      </row>
+      <row baseType="tableRowType" state="Ok" confidence="0">
+        <Qty baseType="fieldType" state="Ok" confidence="100">
+          <value>5</value>
+          <zone>403 1224 13 19</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Qty>
+        <UOM baseType="fieldType" state="Ok" confidence="100">
+          <value>pc</value>
+          <zone>549 1226 32 19</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </UOM>
+        <Price baseType="fieldType" state="Ok" confidence="100">
+          <value>288.40</value>
+          <zone>1475 1224 91 24</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Price>
+        <Total baseType="fieldType" state="Ok" confidence="100">
+          <value>1442.00</value>
+          <zone>1700 1224 113 24</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Total>
+      </row>
+      <row baseType="tableRowType" state="Ok" confidence="0">
+        <Qty baseType="fieldType" state="Ok" confidence="100">
+          <value>8</value>
+          <zone>403 1301 13 19</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Qty>
+        <UOM baseType="fieldType" state="Ok" confidence="100">
+          <value>pc</value>
+          <zone>549 1303 32 19</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </UOM>
+        <Price baseType="fieldType" state="Ok" confidence="100">
+          <value>89.90</value>
+          <zone>1489 1301 78 24</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Price>
+        <Total baseType="fieldType" state="Ok" confidence="100">
+          <value>719.20</value>
+          <zone>1721 1301 93 24</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Total>
+      </row>
+      <row baseType="tableRowType" state="Uncertain" confidence="0">
+        <Qty baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </Qty>
+        <UOM baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </UOM>
+        <Price baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </Price>
+        <Total baseType="fieldType" state="Ok" confidence="100">
+          <value>38.00</value>
+          <zone>1736 1438 78 24</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Total>
+      </row>
+      <row baseType="tableRowType" state="Uncertain" confidence="0">
+        <Qty baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </Qty>
+        <UOM baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </UOM>
+        <Price baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </Price>
+        <Total baseType="fieldType" state="Ok" confidence="100">
+          <value>4841.20</value>
+          <zone>1700 1488 113 24</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Total>
+      </row>
+      <row baseType="tableRowType" state="Uncertain" confidence="0">
+        <Qty baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </Qty>
+        <UOM baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </UOM>
+        <Price baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </Price>
+        <Total baseType="fieldType" state="Ok" confidence="100">
+          <value>169.44</value>
+          <zone>1721 1538 93 24</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Total>
+      </row>
+      <row baseType="tableRowType" state="Uncertain" confidence="0">
+        <Qty baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </Qty>
+        <UOM baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </UOM>
+        <Price baseType="fieldType" state="Empty" confidence="0">
+          <value>
+          </value>
+        </Price>
+        <Total baseType="fieldType" state="Ok" confidence="100">
+          <value>5010.64</value>
+          <zone>1700 1587 113 24</zone>
+          <sources>
+            <image guid="3fdb060b-218a-43bf-88d7-15994b6958f5" />
+          </sources>
+        </Total>
+      </row>
+    </Items>
+  </DocumentClass>
+  <sourceInstances>
+    <imageInstance guid="b410ee2c-f499-4945-bd0c-9b1ecfdc0c77" id="Invoice" url="\\JSCHACHTGXY3JC2\DOKuStarDispatchData\Repositories\Standard\UnceRows.jc11.0000/19401_o46201_wj0_Imp.pdf" sourceType="pdf" archived="True">
+      <pageInstances>
+        <pageInstance guid="3fdb060b-218a-43bf-88d7-15994b6958f5" id="Invoice_00000" pageNumber="1">
+          <variantInstances>
+            <imageVariantInstance guid="f48e2f17-a41a-4e1e-b51c-0ed6ec1549cd" id="Invoice_00000" url="\\JSCHACHTGXY3JC2\DOKuStarDispatchData\Repositories\Standard\UnceRows.jc11.0000\19401_o46601_wj2_Rec.tif" sourceType="tif" variantName="ref" producer="Splitter" XResolution="300" YResolution="300" Width="2550" Height="3300" Orientation="0" archived="True">
+              <transformation>1 0 0 1 0 0 2550 3300</transformation>
+            </imageVariantInstance>
+            <imageVariantInstance guid="0748686c-815a-4cb9-a769-86aa34fe5434" id="Invoice_00000" url="\\JSCHACHTGXY3JC2\DOKuStarDispatchData\Repositories\Standard\UnceRows.jc11.0000\19401_o46601_wj3_Rec.tif" sourceType="tif" variantName="ocr" producer="Splitter" XResolution="300" YResolution="300" Width="2550" Height="3300" Orientation="0" archived="True">
+              <transformation>1 0 0 1 0 0 2550 3300</transformation>
+            </imageVariantInstance>
+            <fullTextVariantInstance guid="bf52869e-00ee-454f-9202-f57cd5ad6a8a" id="Invoice_00000" url="\\JSCHACHTGXY3JC2\DOKuStarDispatchData\Repositories\Standard\UnceRows.jc11.0000\19401_o46601_wj3_Rec.xml" sourceType="xml" variantName="fulltext" filenamegroup="0748686c-815a-4cb9-a769-86aa34fe5434" producer="Extraction" archived="True" />
+          </variantInstances>
+          <transformation>1 0 0 1 0 0 2550 3300</transformation>
+          <uprighttransformation>1 0 0 1 0 0 2550 3300</uprighttransformation>
+        </pageInstance>
+      </pageInstances>
+    </imageInstance>
+  </sourceInstances>
+</DOKuStar.Data>
