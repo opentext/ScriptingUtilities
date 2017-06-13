@@ -46,7 +46,6 @@ namespace LookupListUpdater
             Application.Current.Shutdown();
         }
 
-
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (vm.TerminateProjects()) e.Cancel = true;

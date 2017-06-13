@@ -207,24 +207,58 @@ namespace ScriptingUtilities
 
             foreach (Document doc in pool.RootNode.Documents)
             {
-                Annotation tcwAnnoation = doc.Annotations[ScriptingUtilities.TableColumnWiseAnnotationName];
+                Annotation tcwAnnoation = doc.Annotations[ScriptingUtilities.TableColumnWise_AnnotationName];
                 if (tcwAnnoation == null) continue;
                 string tableName = tcwAnnoation.Value;
 
+                List<KeyValuePair<string, string>> mapping = null;
+                Annotation tcwMappingAnnoation = doc.Annotations[ScriptingUtilities.TableColumnWiseMapping_AnnotationName];
+                if (tcwMappingAnnoation != null)
+                    mapping = (List<KeyValuePair<string, string>>)SIEESerializer.StringToObject(tcwMappingAnnoation.Value); 
+
                 Table table = doc.Fields[tableName] as Table;
                 table.Rows.Add("row");
-                int nofRows = doc.Fields[table.Rows[0].Fields[0].Name].Alternatives.Count + 1;
+                int nofRows = getNofRows(doc, table, mapping);
                 for (int i = 0; i < nofRows-1; i++) table.Rows.Add("row");
 
                 foreach (string column in getColumnNames(table.Rows[0] as TableRow))
                 {
+                    string fieldName = tcwMap(column, mapping);
+                    if (fieldName == null) continue;
+
                     int i = 0;
-                    foreach (Field f in getFieldAlternatives(doc, column))
+                    foreach (Field f in getFieldAlternatives(doc, fieldName))
                         if (i++ < nofRows)
-                            table.Rows[i-1].Fields[column] = f.Clone() as Field;
+                        {
+                            Field newField = f.Clone() as Field;
+                            newField.Rename(column);
+                            table.Rows[i - 1].Fields[column] = newField;
+                        }
                 }
             }
             return pool.XmlDocument;
+        }
+
+        private int getNofRows(Document doc, Table table, List<KeyValuePair<string, string>> mapping)
+        {
+            string fieldName = null;
+            if (mapping == null)
+                fieldName = table.Rows[0].Fields[0].Name;
+            else
+            {
+                foreach (Field f in table.Rows[0].Fields)
+                {
+                    fieldName = tcwMap(f.Name, mapping);
+                    if (fieldName != null) break;
+                }
+            }
+            return doc.Fields[fieldName].Alternatives.Count + 1;
+        }
+
+        private string tcwMap(string name, List<KeyValuePair<string, string>> mapping)
+        {
+            if (mapping == null) return name;
+            return mapping.Where(n => n.Key == name).Select(n => n.Value).FirstOrDefault();
         }
 
         private List<string> getColumnNames(TableRow row)

@@ -11,6 +11,10 @@ using System.Diagnostics;
 
 namespace LookupListUpdater
 {
+    /// This is the model part within the MVVM patter of the program. It holds all data
+    /// of the project that is loaded into the application. 
+    /// The project is simply an instance of SqlTableDefCollection.
+    /// The project maintains a dirty flag.
     public class Model : ModelBase
     {
         #region Construction (Singleton)
@@ -40,13 +44,16 @@ namespace LookupListUpdater
         }
         #endregion
 
-        #region Load and save table definitions
+        #region Create, load and save table 
+        // Create new empty model
         public void NewTableDefs()
         {
             SqlTableDefs = new SqlTableDefCollection();
             SqlTableDefs.Add(new SqlTableDef());
             Dirty = false;
         }
+
+        // Load a model from a project file
         public void LoadTables(string filename)
         {
             SqlTableDefs = deserializeFromXmlString(
@@ -54,42 +61,12 @@ namespace LookupListUpdater
                     typeof(SqlTableDefCollection)) as SqlTableDefCollection;
             Dirty = false;
         }
+
+        // Save current model state as project file
         public void SaveTables(string filename)
         {
             File.WriteAllText(filename, serializeToXmlString(sqlTableDefs));
             Dirty = false;
-        }
-
-        private static SqlTableDefCollection loadTables()
-        {
-            try
-            {
-                return deserializeFromXmlString(
-                    File.ReadAllText(configFile()),
-                    typeof(SqlTableDefCollection)) as SqlTableDefCollection;
-            }
-            catch { return new SqlTableDefCollection(); }
-        }
-
-        public void SaveTables()
-        {
-            File.WriteAllText(configFile(), serializeToXmlString(sqlTableDefs));
-        }
-
-        private static string configFile()
-        {
-            string configFile = Path.Combine(Path.GetDirectoryName(
-                new Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).PathAndQuery),
-                "LookupListUpdater.exe.config");
-
-            var str = XElement.Parse(File.ReadAllText(configFile));
-
-            string exchangeFolder =
-                str.Elements().Descendants().
-                Where(n => n.Name == "setting" && (string)n.Attribute("name") == "ExchangeFolder").
-                First().Value;
-
-            return Path.Combine(exchangeFolder, "LookupListUpdate.xml");
         }
         #endregion
 
@@ -101,16 +78,16 @@ namespace LookupListUpdater
             StreamWriter streamWriter = null;
             try
             {
-                // XmlSerializer für den Typ des Objekts erzeugen
+                // Create XmlSerializer for this type
                 XmlSerializer serializer = new XmlSerializer(obj.GetType());
                 byte[] buffer;
 
-                // Objekt über ein MemoryStream-Objekt serialisieren
+                // Serialize via memory stram
                 memoryStream = new MemoryStream();
                 streamWriter = new StreamWriter(memoryStream, encoding);
                 serializer.Serialize(streamWriter, obj);
                 
-                // MemoryStream in einen String umwandeln und diesen zurückgeben
+                // Return memory stream as string
                 buffer = memoryStream.ToArray();
                 return encoding.GetString(buffer, 0, buffer.Length);
             }
@@ -129,10 +106,10 @@ namespace LookupListUpdater
             MemoryStream memoryStream = null;
             try
             {
-                // XmlSerializer für den Typ des Objekts erzeugen
+                // Create XmlSerializer for this type
                 XmlSerializer serializer = new XmlSerializer(objectType);
 
-                // Objekt über ein MemoryStream-Objekt deserialisieren
+                // Deserialize object
                 memoryStream = new MemoryStream(encoding.GetBytes(xmlString));
                 return serializer.Deserialize(memoryStream);
             }
@@ -144,18 +121,20 @@ namespace LookupListUpdater
         #endregion
         
         #region Functions
-        public SqlClient GetSqlClient(SqlTableDef sqlTable)
+        // Return an SqlClient that can be used to access the SQL server
+        public SqlClient GetSqlClient(SqlTableDef sqlDefinition)
         {
             SqlClient sqlClient = new SqlClient();
-            if (sqlTable.LoginType == SqlTableDef.LogonType.SqlUser)
-                sqlClient.Connect(sqlTable.Instance, sqlTable.Catalog, sqlTable.Username, sqlTable.Password);
+            if (sqlDefinition.LoginType == SqlTableDef.LogonType.SqlUser)
+                sqlClient.Connect(sqlDefinition.Instance, sqlDefinition.Catalog, sqlDefinition.Username, sqlDefinition.Password);
             else
-                sqlClient.Connect(sqlTable.Instance, sqlTable.Catalog);
+                sqlClient.Connect(sqlDefinition.Instance, sqlDefinition.Catalog);
 
-            sqlClient.Tablename = sqlTable.Table;
+            sqlClient.Tablename = sqlDefinition.Table;
             return sqlClient;
         }
         
+        /// Store table as CSV file
         public void StoreTable(SqlTableDef table, string filename)
         {
             SqlClient sqlClient = GetSqlClient(table);
@@ -235,7 +214,9 @@ namespace LookupListUpdater
         #endregion
     }
 
-    #region SqlTableCollection type definition
+    #region SQL table collection type definition
+    /// This collection holds SQL table definitions and ensures that each such table definition
+    /// is back chained to this list. 
     public class SqlTableDefCollection : ObservableCollection<SqlTableDef>
     {
         public new void Add(SqlTableDef t)
@@ -246,7 +227,9 @@ namespace LookupListUpdater
     }
     #endregion
 
-    #region SqlTable
+    #region SQL table definition
+    /// This class holds the data that defines an SQL table, e.g. instance name, table name
+    /// and login credentials.
     [Serializable]
     public class SqlTableDef : ModelBase
     {

@@ -550,11 +550,23 @@ namespace ScriptingUtilities
         #endregion
 
         #region Table automation column-wise
-        public const string TableColumnWiseAnnotationName = "SU_TableColumnWise";
-        public static void TableColumnWise(DataPool pool, string tableName)
+        public const string TableColumnWise_AnnotationName = "SU_TableColumnWise";
+        public const string TableColumnWiseMapping_AnnotationName = "SU_TableColumnWiseMapping";
+        public static void TableColumnWise(DataPool pool, string tableName, Dictionary<string,string> nameMapping = null)
         {
+            List<KeyValuePair<string, string>> mapping = null;
+            if (nameMapping != null)
+                mapping = nameMapping.ToList();
+
             foreach (Document doc in pool.RootNode.Documents)
-                doc.Annotations.Add(new Annotation(pool, TableColumnWiseAnnotationName, tableName));
+            {
+                doc.Annotations.Add(new Annotation(pool, TableColumnWise_AnnotationName, tableName));
+                if (nameMapping != null)
+                    doc.Annotations.Add(new Annotation(pool,
+                        TableColumnWiseMapping_AnnotationName, 
+                        SIEESerializer.ObjectToString(mapping)));
+            }
+            //File.WriteAllText(@"c:\temp\tt.txt", TableColumnWiseMapping_AnnotationName + " -5- ");
         }
         #endregion
     }

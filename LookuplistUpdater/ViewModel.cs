@@ -15,7 +15,7 @@ namespace LookupListUpdater
     public class ViewModel : ModelBase
     {
         #region Construction
-        private Model model;
+        private Model model;    // holds current project data
 
         public ViewModel(Model m, PasswordBox pb)
         {
@@ -182,7 +182,7 @@ namespace LookupListUpdater
         }
         #endregion
 
-        #region Function (project)
+        #region Function (project related, open, close, load, ...)
         bool projectLoaded = false;
 
         private string RecentProjects_name = "RecentProjects";
@@ -224,7 +224,7 @@ namespace LookupListUpdater
             RaisePropertyChanged(RecentProjects_name);
         }
 
-        public bool TerminateProjects()
+        public bool TerminateProjects()     // ... when ending the program
         {
             StringCollection collection = new StringCollection();
             collection.AddRange(RecentProjects.ToArray());

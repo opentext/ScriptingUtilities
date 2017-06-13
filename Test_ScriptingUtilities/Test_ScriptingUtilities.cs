@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Drawing;
-using System.Drawing.Imaging;
 
 using DOKuStar.Data.Xml;
 using System.Xml;
@@ -170,7 +169,7 @@ namespace ScriptingUtilities
             string output = @"c:\temp\xx.pdf";
             //IPdfCompressor compress = new Luratech_Compressor();
             IPdfCompressor compress = new Dummy_Compressor();
-            compress.Initialize(folder + @"PdfCompression\SampleLuraTechConfig.dat");
+            compress.Initialize(folder + @"ScriptingUtilitiesProfileExtension\PdfCompression\LuraTech\SampleLuraTechConfig.dat");
             compress.Compress(input, output);
         }
 
@@ -363,8 +362,6 @@ namespace ScriptingUtilities
             ScriptingUtilities.ShowAllFields(data, "ShowAll");
             data.Save(Path.Combine(repository, "xx.data"));
         }
-
-        
 
     }
 }

@@ -6,6 +6,7 @@ using System.Data;
 
 namespace LookupListUpdater
 {
+    /// This class contains all functions that deal with the SQL server.
     public class SqlClient : IDisposable
     {
         #region Construction
@@ -40,7 +41,7 @@ namespace LookupListUpdater
         }
         #endregion
 
-        #region Functions
+        #region SQL introspection
         public List<string> GetTablenames()
         {
             List<string> result = new List<string>();
@@ -73,7 +74,9 @@ namespace LookupListUpdater
 
             return result;
         }
+        #endregion
 
+        #region Read table
         SqlDataReader sdr;
         List<string> colNames;
 

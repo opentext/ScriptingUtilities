@@ -10,8 +10,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Open Text")]
 [assembly: AssemblyProduct("Capture Center")]
-[assembly: AssemblyCopyright("Copyright © 2016 Open Text. All Rights Reserved.")]
-[assembly: AssemblyTrademark("Copyright © 2016 Open Text")]
+[assembly: AssemblyCopyright("Copyright © 2017 Open Text. All Rights Reserved.")]
+[assembly: AssemblyTrademark("Copyright © 2017 Open Text")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -32,4 +32,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("10.6.0.0")]
-[assembly: AssemblyFileVersion("16.1.326.0")]
+[assembly: AssemblyFileVersion("16.3.20.0")]
