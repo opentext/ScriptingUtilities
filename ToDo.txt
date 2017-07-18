@@ -1,4 +1,9 @@
 More ideas
+	* Read camera data from incoming images
+		- Doku (Github)
+		- Conpile switch off
+		- CVS and Github
+		- Test on OCC3 (first without, then with compile switch, ConsoleApp)
 	* Create a complete invoice solution
 	* Access character details
 	* Export (to database) during Recognition
@@ -6,6 +11,8 @@ More ideas
 	* Replicate input folder structure in output destination
 	* Validation launcher
 	* SAP Export
+	* Get processing time from batch report table
+	* Handle ZIP files from Email import
 
 ToDo:
 	* Documentation for LookupListUpdater

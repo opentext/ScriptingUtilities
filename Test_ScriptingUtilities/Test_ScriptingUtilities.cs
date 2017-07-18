@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Drawing;
+using System.Net;
 
 using DOKuStar.Data.Xml;
 using System.Xml;
@@ -363,5 +364,29 @@ namespace ScriptingUtilities
             data.Save(Path.Combine(repository, "xx.data"));
         }
 
+        [TestMethod]
+        public void ExifExtraction()
+        {
+            string image = @"C:\01_Work\01_OCC\dev\OCC_Head\occ_b\Samples\ScriptingUtilities\SampleDocuments\ExifData.JPG";
+            //string image = @"C:\01_Work\01_OCC\dev\OCC_Head\occ_b\Samples\ScriptingUtilities\SampleDocuments\BlankPage.docx";
+
+            IImageMetadataExtraction extractor = ImageMetadataExtraction_Manager.GetExtractor();
+            var x1 = extractor.Extract(image);
+
+            string repository = @"\\JSCHACHTGXY3JC2\DOKuStarDispatchData\Repositories\Standard\ImagData.jc28.0000";
+            string dataPoolFile = Path.Combine(repository, "35401_o86406_wj5_Rec.data");
+            DataPool data = new DataPool();
+            data.Load(dataPoolFile);
+
+            Document doc = data.RootNode.Documents[0];
+            Source source = doc.Sources[0];
+            ImageSourceInstance isi = (ImageSourceInstance)source.Instance.ParentInstance;
+            string inputFile =  isi.Url;
+
+            x1 = extractor.Extract(inputFile);
+
+            string x2 = ScriptingUtilities.GetImageMetaData(doc, "Exif SubIFD", "Exposure Time");
+
+        }
     }
 }

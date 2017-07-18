@@ -23,8 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LookupListUpdaterHotspot", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LookupListUpdater", "LookupListUpdater", "{5742CE3B-4825-45A8-A413-7EFE495FB623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{FF682CBD-56B2-4859-8A57-3D3214187239}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,10 +53,6 @@ Global
 		{58EC9111-F2FE-4968-A7F4-8526829644A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58EC9111-F2FE-4968-A7F4-8526829644A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58EC9111-F2FE-4968-A7F4-8526829644A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF682CBD-56B2-4859-8A57-3D3214187239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF682CBD-56B2-4859-8A57-3D3214187239}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF682CBD-56B2-4859-8A57-3D3214187239}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF682CBD-56B2-4859-8A57-3D3214187239}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

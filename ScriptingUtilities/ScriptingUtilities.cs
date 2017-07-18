@@ -13,6 +13,8 @@ namespace ScriptingUtilities
     public partial class ScriptingUtilities
     {
         #region Construction
+        private static readonly ITrace trace = TraceManager.GetTracer(typeof(ScriptingUtilities));
+
         public ScriptingUtilities()
         {
         }
@@ -569,5 +571,28 @@ namespace ScriptingUtilities
             //File.WriteAllText(@"c:\temp\tt.txt", TableColumnWiseMapping_AnnotationName + " -5- ");
         }
         #endregion
+
+        #region Image meta data
+        public static string GetImageMetaData(Document doc, string group, string tag)
+        {
+            ImageSourceInstance isi = (ImageSourceInstance)doc.Sources[0].Instance.ParentInstance;
+            string inputFile = isi.Url;
+
+            IImageMetadataExtraction extractor = ImageMetadataExtraction_Manager.GetExtractor();
+            try
+            {
+                Dictionary<string, string> tags = extractor.Extract(inputFile, group);
+                trace.WriteInfo("tags.Count=" + tags.Count);
+                if (tags.ContainsKey(tag)) return tags[tag];
+                return string.Empty;
+            }
+            catch (Exception e)
+            {
+                trace.WriteError("extractor.Extract(" + inputFile + ", " + group +") failed: " + e.Message);
+                return string.Empty;
+            }
+        }
+        #endregion
+
     }
 }
