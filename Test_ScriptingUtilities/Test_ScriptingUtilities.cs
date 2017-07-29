@@ -388,5 +388,26 @@ namespace ScriptingUtilities
             string x2 = ScriptingUtilities.GetImageMetaData(doc, "Exif SubIFD", "Exposure Time");
 
         }
+
+        [TestMethod]
+        public void MultiTaxRate()
+        {
+            string repository = @"\\JSCHACHTGXY3JC2\DOKuStarDispatchData\Repositories\Standard\Multoice.jc23.0000";
+            string dataPoolFile = Path.Combine(repository, "37201_o89251_wj5_Rec.data");
+            DataPool data = new DataPool();
+            data.Load(dataPoolFile);
+
+            Dictionary<string,string> map = new Dictionary<string, string>() {
+                    { "TotalAmount","Total" },{"NetAmount","Net" },{"VatAmount","Vat" } };
+
+            ScriptingUtilities.GetVatRates(data, "TotalAmount", "Taxes", map);
+            data.Save(@"c:\temp\xx.data");
+
+            map["unkownw"] = "nothing";
+            bool gotError = false;
+            try { ScriptingUtilities.GetVatRates(data, "TotalAmount", "Taxes", map); }
+            catch { gotError = true; }
+            Assert.IsTrue(gotError);
+        }
     }
 }

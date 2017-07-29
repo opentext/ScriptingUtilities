@@ -50,7 +50,7 @@ namespace ScriptingUtilities
 
             switch (ScriptingManager.GetScriptName(pool))
             {
-                case ScriptingManager.prepareImportName: break;
+                case ScriptingManager.prepareImportName: return getScheam(pool);
                 case ScriptingManager.importName: break;
                 case ScriptingManager.separationName: break;
                 case ScriptingManager.classificationName: break;
@@ -67,6 +67,14 @@ namespace ScriptingUtilities
             XmlDocument xd;
             xd = SqlVerification(pool);
             return tableColumnWise(new DataPool(xd));
+        }
+
+        // Store schema filename in annotation to be used by ScriptingUtilities
+        private XmlDocument getScheam(DataPool pool)
+        {
+            pool.RootNode.Annotations.Add(new Annotation(pool, 
+                ScriptingUtilities.SchemaFileName_AnnotationName, getSchemaFileName()));
+            return pool.XmlDocument;
         }
         #endregion
 
@@ -281,12 +289,19 @@ namespace ScriptingUtilities
         {
             if (base.processor != null)
             {
-                //string schemaFile = Path.Combine(base.processor.Sitemap.BasePath, base.processor.Sitemap.Schema);
-                string path = new DirectoryInfo(base.processor.Sitemap.BasePath).Parent.FullName;
-                string schemaFile = Path.Combine(path, "DataInput.xsd");
+                string schemaFile = getSchemaFileName();
                 DOKuStar.Data.Xml.Schema.DataSchema schema = new DOKuStar.Data.Xml.Schema.DataSchema(schemaFile);
                 pool.DataSchema = schema;
             }
+        }
+
+        private string getSchemaFileName()
+        {
+            if (base.processor == null) throw new Exception("Cannot load schema, processor == null");
+            
+            //return = Path.Combine(base.processor.Sitemap.BasePath, base.processor.Sitemap.Schema);
+            string path = new DirectoryInfo(base.processor.Sitemap.BasePath).Parent.FullName;
+            return Path.Combine(path, "DataInput.xsd");
         }
 
         #endregion

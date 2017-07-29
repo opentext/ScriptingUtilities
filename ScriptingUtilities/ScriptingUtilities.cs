@@ -594,5 +594,69 @@ namespace ScriptingUtilities
         }
         #endregion
 
+        #region Invoice Totals
+        public const string SchemaFileName_AnnotationName = "SU_SchemaFileName";
+
+        public static void GetInvoiceTotalsField(DataPool pool, string invoiceTotalsFieldName, string subField, string occField = null)
+        {
+            subField = "InvoiceTotals__" + subField;
+            occField = occField == null ? subField : occField;
+
+            foreach (Document doc in pool.RootNode.Documents)
+            {
+                Field newField = doc.Fields[invoiceTotalsFieldName].Fields[subField].Clone() as Field;
+                newField.Rename(occField);
+                doc.Fields[occField] = newField;
+            }
+        }
+
+        public static void GetVatRates(DataPool pool, 
+            string invoiceTotalsFieldName, 
+            string tableFieldName,
+            Dictionary<string,string> columnMameMapping = null)
+        {
+            List<string> columnNames = new List<string>() { "TotalAmount", "NetAmount", "VatAmount", "VatRate", "Currency" };
+            Dictionary<string, string> mapping = new Dictionary<string, string>();
+            foreach (string columnName in columnNames)
+                mapping[columnName] = columnName;
+
+            if (columnMameMapping != null) foreach (string key in columnMameMapping.Keys)
+                if (!mapping.ContainsKey(key))
+                    throw new Exception("Unknown column name " + key);
+                else
+                    mapping[key] = columnMameMapping[key];
+
+            loadSchema(pool);
+
+            foreach (Document doc in pool.RootNode.Documents)
+            {
+                Table from = doc.Fields[invoiceTotalsFieldName].Fields["InvoiceTotals__VatGroups"] as Table;
+                Table to = doc.Fields[tableFieldName] as Table;
+
+                for (int i = 0; i != from.Rows.Count; i++)
+                {
+                    to.Rows.Add("row");
+                    foreach (string c in columnNames)
+                        if (from.Rows[i].Fields[c].State == DataState.Ok)
+                        {
+                            Field newField = from.Rows[i].Fields[c].Clone() as Field;
+                            newField.Rename(mapping[c]);
+                            to.Rows[i].Fields[mapping[c]] = newField;
+                        }
+                }
+            }
+
+        }
+        #endregion
+
+        #region Utlilities
+        private static void loadSchema(DataPool pool)
+        {
+            string schemaFile = pool.RootNode.Annotations[SchemaFileName_AnnotationName].Value;
+            DOKuStar.Data.Xml.Schema.DataSchema schema = new DOKuStar.Data.Xml.Schema.DataSchema(schemaFile);
+            pool.DataSchema = schema;
+        }
+        #endregion
+
     }
 }
