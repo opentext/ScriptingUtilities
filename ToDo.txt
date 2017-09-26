@@ -8,6 +8,7 @@ More ideas
 	* SAP Export
 	* Get processing time from batch report table
 	* Handle ZIP files from Email import
+	* Show average processing times
 
 ToDo:
-	* Documentation for LookupListUpdater
+	* 

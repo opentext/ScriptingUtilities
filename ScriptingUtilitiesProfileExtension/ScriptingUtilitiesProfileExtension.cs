@@ -50,7 +50,7 @@ namespace ScriptingUtilities
 
             switch (ScriptingManager.GetScriptName(pool))
             {
-                case ScriptingManager.prepareImportName: return getScheam(pool);
+                case ScriptingManager.prepareImportName: return getSchema(pool);
                 case ScriptingManager.importName: break;
                 case ScriptingManager.separationName: break;
                 case ScriptingManager.classificationName: break;
@@ -70,7 +70,7 @@ namespace ScriptingUtilities
         }
 
         // Store schema filename in annotation to be used by ScriptingUtilities
-        private XmlDocument getScheam(DataPool pool)
+        private XmlDocument getSchema(DataPool pool)
         {
             pool.RootNode.Annotations.Add(new Annotation(pool, 
                 ScriptingUtilities.SchemaFileName_AnnotationName, getSchemaFileName()));
