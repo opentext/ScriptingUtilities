@@ -19,6 +19,9 @@ namespace LookupListUpdater
                 Model.Instance,
                 (PasswordBox)LogicalTreeHelper.FindLogicalNode(this, "passwordBox"));
             this.DataContext = vm;
+
+            this.Width = Properties.Settings.Default.WindowSize.Width;
+            this.Height = Properties.Settings.Default.WindowSize.Height;
         }
 
         private void WindowLoaded(object sender, RoutedEventArgs args)
@@ -36,9 +39,6 @@ namespace LookupListUpdater
             CommandBindings.Add(new CommandBinding(StoreTableCommand, vm.StoreTable));
             CommandBindings.Add(new CommandBinding(UpdateCommand, vm.UpdateProfile));
             CommandBindings.Add(new CommandBinding(AboutCommand, vm.About));
-
-            this.Width = Properties.Settings.Default.WindowSize.Width;
-            this.Height = Properties.Settings.Default.WindowSize.Height;
         }
 
         private void exit(object sender, ExecutedRoutedEventArgs e)

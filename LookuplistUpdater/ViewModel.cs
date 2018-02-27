@@ -315,12 +315,12 @@ namespace LookupListUpdater
                 default: return true;
             }
         }
-            private void loadAndStoreErrorMessage(string msg, Exception e)
-            {
+        private void loadAndStoreErrorMessage(string msg, Exception e)
+        {
             MessageBox.Show(
-                msg + "\n" + e.Message, "Lookup list updater",
-                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                msg + "\n" + e.Message, "Lookup List Updater",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         #endregion
 
         #region Password
