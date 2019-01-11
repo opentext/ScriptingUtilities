@@ -11,4 +11,5 @@ More ideas
 	* Show average processing times
 
 ToDo:
-	* 
+	* PDFCompression:
+		- Add SampleLuraTechConfig.dat from the LuraTech folder (CVS)

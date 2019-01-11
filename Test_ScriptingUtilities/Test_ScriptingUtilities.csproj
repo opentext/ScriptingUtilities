@@ -41,7 +41,7 @@
       <HintPath>..\..\..\..\_bin\Captaris.RightDocs.Advanced.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="DOKuStar.Data.Xml">
-      <HintPath>..\..\..\..\..\_bin\DOKuStar.Data.Xml.dll</HintPath>
+      <HintPath>..\..\..\..\_bin\DOKuStar.Data.Xml.dll</HintPath>
     </Reference>
     <Reference Include="DOKuStar.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ca08498c01dc4d5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

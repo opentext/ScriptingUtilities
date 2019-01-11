@@ -102,7 +102,7 @@ namespace LookupListUpdater
             get { return SelectedTable.Username; }
             set { SelectedTable.Username = value; SendPropertyChanged(); }
         }
-        private string Password_name = "Catalog";
+        private string Password_name = "Password";
         public string Password
         {
             get { return SelectedTable.Password; }

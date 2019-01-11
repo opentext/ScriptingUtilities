@@ -32,8 +32,13 @@ namespace ScriptingUtilities
         [TestMethod]
         public void TestAndExplore()
         {
-            Guid id = Guid.NewGuid();
-            string x = id.ToString();
+            string repository = repBase + "Profile1.jc1.0001";
+            string dataPoolFile = Path.Combine(repository, "56801_o129408_wj9_Dat.data");
+            DataPool pool = new DataPool();
+            pool.Load(dataPoolFile);
+
+            Source source = pool.RootNode.Documents[0].Sources[0];
+            string inputFile = (source.PageInstance.ParentInstance as ImageSourceInstance).Url;
         }
 
         [TestMethod]

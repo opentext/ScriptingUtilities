@@ -1,23 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7EFEA8DE-6961-4461-8891-2019A45E5426}</ProjectGuid>
+    <ProjectGuid>{AB91DE3B-C74A-4911-B624-F1D7C5AC7E9E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ScriptingUtilitiesProfileExtension</RootNamespace>
-    <AssemblyName>ScriptingUtilitiesProfileExtension</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>LicenseCounting</RootNamespace>
+    <AssemblyName>LicenseCountingProfileExtension</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;_LuraTech</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -34,16 +35,11 @@
     <Reference Include="Captaris.RightDocs.Advanced.Infrastructure">
       <HintPath>..\..\..\..\_bin\Captaris.RightDocs.Advanced.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="CaptureCenter.Reporting.Custom">
+      <HintPath>..\..\..\..\_bin\CaptureCenter.Reporting.Custom.dll</HintPath>
+    </Reference>
     <Reference Include="DOKuStar.Data.Xml">
       <HintPath>..\..\..\..\_bin\DOKuStar.Data.Xml.dll</HintPath>
-    </Reference>
-    <Reference Include="DOKuStar.Link, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\_bin\DOKuStar.Link.dll</HintPath>
-    </Reference>
-    <Reference Include="DOKuStar.Link.EC.Connectors.Dispatch, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\_bin\DOKuStar.Link.EC.Connectors.Dispatch.dll</HintPath>
     </Reference>
     <Reference Include="DOKuStar.Runtime">
       <HintPath>..\..\..\..\_bin\DOKuStar.Runtime.dll</HintPath>
@@ -51,9 +47,15 @@
     <Reference Include="DOKuStar.Runtime.ScriptingHost">
       <HintPath>..\..\..\..\_bin\DOKuStar.Runtime.ScriptingHost.dll</HintPath>
     </Reference>
+    <Reference Include="DOKuStar.Stats.Api">
+      <HintPath>..\..\..\..\_bin\DOKuStar.Stats.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="DOKuStar.Stats.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ca08498c01dc4d5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\_bin\DOKuStar.Stats.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,30 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PdfCompression\PdfCompression.cs" />
-    <Compile Include="ScriptingUtilitiesProfileExtension.cs" />
+    <Compile Include="LicenseCountingProfileExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PdfCompression\LuraTech\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ScriptingUtilities\ScriptingUtilities.csproj">
-      <Project>{b2aeff08-322d-4c54-a5f3-51aa7f393f39}</Project>
-      <Name>ScriptingUtilities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy ScriptingUtilitiesProfileExtension.dll  "C:\ProgramData\Open Text\DOKuStar Dispatch\Data\Config\CustomCode" /Y
-copy ScriptingUtilitiesProfileExtension.pdb  "C:\ProgramData\Open Text\DOKuStar Dispatch\Data\Config\CustomCode" /Y
-copy ScriptingUtilitiesProfileExtension.dll   ..\..\..\subin /Y</PostBuildEvent>
+    <PostBuildEvent>copy LicenseCountingProfileExtension.dll  "C:\ProgramData\Open Text\DOKuStar Dispatch\Data\Config\CustomCode" /Y
+copy LicenseCountingProfileExtension.pdb  "C:\ProgramData\Open Text\DOKuStar Dispatch\Data\Config\CustomCode" /Y</PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
