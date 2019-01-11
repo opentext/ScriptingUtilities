@@ -29,8 +29,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseCounting", "LicenseC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseReport", "LicenseCounting\LicenseReport\LicenseReport.csproj", "{3EFA96BE-1BE2-4720-B5EC-C8260C79C9B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseSQLClient", "LicenseCounting\LicenseSQLClient\LicenseSQLClient.csproj", "{CC21F210-6161-48A3-A261-A94083681BE5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,10 +67,6 @@ Global
 		{3EFA96BE-1BE2-4720-B5EC-C8260C79C9B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EFA96BE-1BE2-4720-B5EC-C8260C79C9B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EFA96BE-1BE2-4720-B5EC-C8260C79C9B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC21F210-6161-48A3-A261-A94083681BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC21F210-6161-48A3-A261-A94083681BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC21F210-6161-48A3-A261-A94083681BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC21F210-6161-48A3-A261-A94083681BE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,7 +77,6 @@ Global
 		{58EC9111-F2FE-4968-A7F4-8526829644A5} = {5742CE3B-4825-45A8-A413-7EFE495FB623}
 		{AB91DE3B-C74A-4911-B624-F1D7C5AC7E9E} = {A4FFAACF-C044-4F6F-8FF8-1ED0A78C810A}
 		{3EFA96BE-1BE2-4720-B5EC-C8260C79C9B3} = {A4FFAACF-C044-4F6F-8FF8-1ED0A78C810A}
-		{CC21F210-6161-48A3-A261-A94083681BE5} = {A4FFAACF-C044-4F6F-8FF8-1ED0A78C810A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DC022D8C-ADFA-4B6E-BB94-920A1B221600}

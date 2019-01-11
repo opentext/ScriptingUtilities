@@ -59,6 +59,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="PasswordEncryption.cs" />
+    <Compile Include="sqlClient.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -100,11 +101,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LicenseSQLClient\LicenseSQLClient.csproj">
-      <Project>{cc21f210-6161-48a3-a261-a94083681be5}</Project>
-      <Name>LicenseSQLClient</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy LicenseReport.exe ..\..\..\..\subin /Y
+copy LicenseReport.exe.config ..\..\..\..\subin /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>
