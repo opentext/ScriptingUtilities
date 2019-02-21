@@ -204,7 +204,7 @@
                     <TextBox
                     Grid.Row="1" Grid.Column="1" Margin="5"
                     VerticalContentAlignment="Center" MinWidth="150"
-                    Text="{Binding OccFieldname, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding OccTablename, UpdateSourceTrigger=PropertyChanged}"
                     />
                 </Grid>
             </GroupBox>

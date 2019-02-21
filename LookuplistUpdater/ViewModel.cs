@@ -83,7 +83,7 @@ namespace LookupListUpdater
                 RaisePropertyChanged(Password_name);
                 RaisePropertyChanged(Table_name);
                 RaisePropertyChanged(OccProfile_name);
-                RaisePropertyChanged(OccFieldname_name);
+                RaisePropertyChanged(OcTablename_name);
                 RaisePropertyChanged(Tablenames_name);
                 RaisePropertyChanged(TablesLoaded_name);
                 SelectedLoginType = LoginTypes.Where(n => n.Type == selectedTable.LoginType).First();
@@ -147,11 +147,11 @@ namespace LookupListUpdater
             set { SelectedTable.OccProfile = value; SendPropertyChanged(); }
         }
 
-        private string OccFieldname_name = "OccFieldname";
-        public string OccFieldname
+        private string OcTablename_name = "OccFieldname";
+        public string OccTablename
         {
-            get { return SelectedTable.OccFieldname; }
-            set { SelectedTable.OccFieldname = value; SendPropertyChanged(); }
+            get { return SelectedTable.OccTablename; }
+            set { SelectedTable.OccTablename = value; SendPropertyChanged(); }
         }
         public class LogonType
         {
@@ -234,13 +234,21 @@ namespace LookupListUpdater
 
         public bool TerminateProjects()     // ... when ending the program
         {
+            if (abortOperation()) return true;
+
+            if (RecentProjects.Count > 0 &&
+                !System.IO.File.Exists(RecentProjects[0]) &&
+                RecentProjects[0] == string.Empty)
+            {
+                RecentProjects.RemoveAt(0);
+            }
             StringCollection collection = new StringCollection();
             collection.AddRange(RecentProjects.ToArray());
             Properties.Settings.Default.RecentProjects = collection;
             Properties.Settings.Default.OccInstallationPath = OccInstallationPath;
             Properties.Settings.Default.Save();
 
-            return abortOperation();
+            return false;
         }
         public void LoadRecentProject(object sender, ExecutedRoutedEventArgs e)
         {
@@ -303,12 +311,13 @@ namespace LookupListUpdater
                 return;
             }
             addToRecentProjecctList(filename);
-            model.NewTableDefs();
         }
+
         private void closeProject()
         {
             if (abortOperation()) return;
             model.NewTableDefs();
+            RecentProjects.Insert(0, string.Empty);
             SelectedTable = SqlTableDefs[0];
             projectLoaded = false;
         }

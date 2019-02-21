@@ -170,14 +170,14 @@ namespace LookupListUpdater
         public bool UpdateProfile(string tablename, ref string msg)
         {
             SqlTableDef table = SqlTableDefs.Where(n => n.MyName == tablename).First();
-            return UpdateProfile(table, table.OccProfile, table.OccFieldname, ref msg);
+            return UpdateProfile(table, table.OccProfile, table.OccTablename, ref msg);
         }
 
         // Called by hotspot
         public bool UpdateProfile(string tablename, string profilename, ref string msg)
         {
             SqlTableDef table = SqlTableDefs.Where(n => n.MyName == tablename).First();
-            return UpdateProfile(table, profilename, table.OccFieldname, ref msg);
+            return UpdateProfile(table, profilename, table.OccTablename, ref msg);
         }
 
         private bool UpdateProfile(SqlTableDef table, string occProfilename, string occFieldname, ref string msg)
@@ -319,11 +319,11 @@ namespace LookupListUpdater
             set { SetField(ref occProfile, value); ; }
         }
 
-        private string occFieldname;
-        public string OccFieldname
+        private string occTablename;
+        public string OccTablename
         {
-            get { return occFieldname; }
-            set { SetField(ref occFieldname, value); ; }
+            get { return occTablename; }
+            set { SetField(ref occTablename, value); ; }
         }
         #endregion
 
