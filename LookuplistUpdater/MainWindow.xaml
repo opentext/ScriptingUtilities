@@ -7,7 +7,7 @@
         d:DataContext="{d:DesignInstance local:ViewModel}"
         mc:Ignorable="d"
         Loaded="WindowLoaded" Closing="WindowClosing"
-        SizeToContent="WidthAndHeight"
+        
         Title="{Binding LoadedProject, StringFormat=Lookup List Updater:  {0}}"
       >
 
@@ -69,7 +69,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn 
                         Header="Name" MinWidth="150"
-                        Binding="{Binding Name, Mode=TwoWay}"
+                        Binding="{Binding MyName, Mode=TwoWay}"
                     >
                     </DataGridTextColumn>
                 </DataGrid.Columns>
@@ -199,7 +199,7 @@
                 <Label
                     Grid.Row="1" Grid.Column="0" Margin="5"
                     IsEnabled="{Binding ShowUserNamePassword}"
-                    Content="OCC field name"
+                    Content="OCC table name"
                     />
                     <TextBox
                     Grid.Row="1" Grid.Column="1" Margin="5"
@@ -285,6 +285,13 @@
                     <RibbonButton 
                         LargeImageSource="Media/media_play.png" Label="Update OCC profile"
                         Command="{x:Static local:MainWindow.UpdateCommand}" CommandTarget="{Binding ElementName=mainUI}"/>
+                </RibbonGroup>
+            </RibbonTab>
+
+            <RibbonTab Header="Configuration">
+                <RibbonGroup Header="OCC">
+                    <Label Content="OCC installation path" />
+                    <TextBox Text="{Binding OccInstallationPath, UpdateSourceTrigger=PropertyChanged}" MinWidth="150"/>
                 </RibbonGroup>
             </RibbonTab>
 

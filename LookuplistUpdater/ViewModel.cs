@@ -29,6 +29,7 @@ namespace LookupListUpdater
             model = m;
             SelectedTable = SqlTableDefs[0];
 
+            OccInstallationPath = Properties.Settings.Default.OccInstallationPath;
             IsRunning = false;
             initializeProjects();
 
@@ -46,6 +47,13 @@ namespace LookupListUpdater
         {
             get { return isRunning; }
             set { isRunning = value; SendPropertyChanged(); }
+        }
+
+        private string occInstallationPath;
+        public string OccInstallationPath
+        {
+            get { return occInstallationPath; }
+            set { occInstallationPath = value; model.OccInstallationPath = value; SendPropertyChanged(); }
         }
 
         private string SqlTableDefs_name = "SqlTableDefs";
@@ -229,6 +237,7 @@ namespace LookupListUpdater
             StringCollection collection = new StringCollection();
             collection.AddRange(RecentProjects.ToArray());
             Properties.Settings.Default.RecentProjects = collection;
+            Properties.Settings.Default.OccInstallationPath = OccInstallationPath;
             Properties.Settings.Default.Save();
 
             return abortOperation();
@@ -408,7 +417,7 @@ namespace LookupListUpdater
         {
             try { IsRunning = true;
                 string msg = null;
-                bool result = model.UpdateProfile(SelectedTable.Name, ref msg);
+                bool result = model.UpdateProfile(SelectedTable.MyName, ref msg);
                 MessageBox.Show(
                     (result ? "Success" : "Failed") + "\n" + msg,
                     "Lookup list update",

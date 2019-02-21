@@ -36,6 +36,8 @@ namespace LookupListUpdater
         #endregion
 
         #region Properties
+        public string OccInstallationPath { get; set; } = string.Empty;
+
         private SqlTableDefCollection sqlTableDefs;
         public SqlTableDefCollection SqlTableDefs
         {
@@ -167,14 +169,14 @@ namespace LookupListUpdater
         // Called by command line and by UI
         public bool UpdateProfile(string tablename, ref string msg)
         {
-            SqlTableDef table = SqlTableDefs.Where(n => n.Name == tablename).First();
+            SqlTableDef table = SqlTableDefs.Where(n => n.MyName == tablename).First();
             return UpdateProfile(table, table.OccProfile, table.OccFieldname, ref msg);
         }
 
         // Called by hotspot
         public bool UpdateProfile(string tablename, string profilename, ref string msg)
         {
-            SqlTableDef table = SqlTableDefs.Where(n => n.Name == tablename).First();
+            SqlTableDef table = SqlTableDefs.Where(n => n.MyName == tablename).First();
             return UpdateProfile(table, profilename, table.OccFieldname, ref msg);
         }
 
@@ -183,16 +185,22 @@ namespace LookupListUpdater
             string tmpName = Path.GetTempFileName();
             StoreTable(table, tmpName);
 
-            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-            UriBuilder uri = new UriBuilder(codeBase);
-            string path = Uri.UnescapeDataString(uri.Path);
-            string OCCFolder =  Path.GetDirectoryName(path);
+            string occFolder = string.Empty;
+            string assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
+            if (assemblyname.Contains("LookupList") && !String.IsNullOrEmpty(OccInstallationPath))
+                occFolder = OccInstallationPath;
+            else {
+                string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+                UriBuilder uri = new UriBuilder(codeBase);
+                string path = Uri.UnescapeDataString(uri.Path);
+                occFolder = Path.GetDirectoryName(path);
+            }
 
             Process proc = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = Path.Combine(OCCFolder, "LookupDatabaseUpdater.exe"),
+                    FileName = Path.Combine(occFolder, "LookupDatabaseUpdater.exe"),
                     Arguments =
                         "/server:localhost" +
                         " /profile:" + occProfilename +
@@ -204,12 +212,19 @@ namespace LookupListUpdater
                 }
             };
             msg = string.Empty;
-            proc.Start();
-            while (!proc.StandardOutput.EndOfStream)
-                msg += proc.StandardOutput.ReadLine() + "\n";
- 
-            File.Delete(tmpName);
-            return proc.ExitCode == 0;
+            try
+            {
+                proc.Start();
+                while (!proc.StandardOutput.EndOfStream)
+                    msg += proc.StandardOutput.ReadLine() + "\n";
+
+                File.Delete(tmpName);
+                return proc.ExitCode == 0;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Launching {proc.StartInfo. FileName} {proc.StartInfo.Arguments} failed. \n{e.Message}");
+            }
         }
         #endregion
     }
@@ -240,18 +255,18 @@ namespace LookupListUpdater
 
         public SqlTableDef()
         {
-            Name = initalName;
+            MyName = initalName;
             Password = string.Empty;
             LoginType = LogonType.SqlUser;
         }
         #endregion
 
         #region Properties
-        private string name;
-        public string Name
+        private string myNname;
+        public string MyName
         {
-            get { return name; }
-            set { verifyUniqueness(value); SetField(ref name, value); }
+            get { return myNname; }
+            set { verifyUniqueness(value); SetField(ref myNname, value); }
         }
 
         private string instance;
@@ -318,7 +333,7 @@ namespace LookupListUpdater
             if (SqlTables == null) return;
             foreach (SqlTableDef t in SqlTables)
             {
-                if (this != t && newName != initalName && newName == t.Name)
+                if (this != t && newName != initalName && newName == t.MyName)
                     throw new Exception("Duplicate name");
             }
         }

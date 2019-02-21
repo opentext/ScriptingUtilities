@@ -64,10 +64,10 @@ namespace DOKuStar.Runtime.HotFolders.Connectors.LookupListUpdaterConnectors
         {
             Model model = Model.Instance;
             model.LoadTables(configuration.Projectfile);
-            SqlTableDef table = model.SqlTableDefs.Where(n => n.Name == configuration.SelectedTableDefinition).First();
+            SqlTableDef table = model.SqlTableDefs.Where(n => n.MyName == configuration.SelectedTableDefinition).First();
 
             string msg = string.Empty;
-            if (!model.UpdateProfile(table.Name, configuration.Profilename, ref msg))
+            if (!model.UpdateProfile(table.MyName, configuration.Profilename, ref msg))
                 throw new Exception("Update failed.\n" + msg);
    
             return new string[0];

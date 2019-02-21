@@ -76,7 +76,7 @@ namespace DOKuStar.Runtime.HotFolders.Connectors.LookupListUpdaterConnectors
                 model.LoadTables(configuration.Projectfile);
             if (model.SqlTableDefs.Count == 0)
                 throw new Exception("No table definition found");
-            foreach (string name in model.SqlTableDefs.Select(n => n.Name))
+            foreach (string name in model.SqlTableDefs.Select(n => n.MyName))
                 tables_comboBox.Items.Add(name);
         }
 
@@ -93,7 +93,7 @@ namespace DOKuStar.Runtime.HotFolders.Connectors.LookupListUpdaterConnectors
                     configuration.Projectfile = dlg.FileName;
                     tables_comboBox.Items.Clear();
                     foreach (SqlTableDef st in model.SqlTableDefs)
-                        tables_comboBox.Items.Add(st.Name);
+                        tables_comboBox.Items.Add(st.MyName);
                     if (tables_comboBox.Items.Count > 0)
                         tables_comboBox.SelectedIndex = 0;
                 }

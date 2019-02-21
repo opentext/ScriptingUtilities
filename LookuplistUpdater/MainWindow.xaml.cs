@@ -48,6 +48,8 @@ namespace LookupListUpdater
 
         private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            Properties.Settings.Default.WindowSize = new System.Drawing.Size((int)this.Width,(int)this.Height);
+            Properties.Settings.Default.Save();
             if (vm.TerminateProjects()) e.Cancel = true;
         }
 
