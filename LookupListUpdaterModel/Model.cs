@@ -169,14 +169,14 @@ namespace LookupListUpdater
         // Called by command line and by UI
         public bool UpdateProfile(string tablename, ref string msg)
         {
-            SqlTableDef table = SqlTableDefs.Where(n => n.MyName == tablename).First();
+            SqlTableDef table = SqlTableDefs.Where(n => n.TableDefinitioName == tablename).First();
             return UpdateProfile(table, table.OccProfile, table.OccTablename, ref msg);
         }
 
         // Called by hotspot
         public bool UpdateProfile(string tablename, string profilename, ref string msg)
         {
-            SqlTableDef table = SqlTableDefs.Where(n => n.MyName == tablename).First();
+            SqlTableDef table = SqlTableDefs.Where(n => n.TableDefinitioName == tablename).First();
             return UpdateProfile(table, profilename, table.OccTablename, ref msg);
         }
 
@@ -255,18 +255,18 @@ namespace LookupListUpdater
 
         public SqlTableDef()
         {
-            MyName = initalName;
+            TableDefinitioName = initalName;
             Password = string.Empty;
             LoginType = LogonType.SqlUser;
         }
         #endregion
 
         #region Properties
-        private string myNname;
-        public string MyName
+        private string tableDefinitioName;
+        public string TableDefinitioName
         {
-            get { return myNname; }
-            set { verifyUniqueness(value); SetField(ref myNname, value); }
+            get { return tableDefinitioName; }
+            set { verifyUniqueness(value); SetField(ref tableDefinitioName, value); }
         }
 
         private string instance;
@@ -333,7 +333,7 @@ namespace LookupListUpdater
             if (SqlTables == null) return;
             foreach (SqlTableDef t in SqlTables)
             {
-                if (this != t && newName != initalName && newName == t.MyName)
+                if (this != t && newName != initalName && newName == t.TableDefinitioName)
                     throw new Exception("Duplicate name");
             }
         }

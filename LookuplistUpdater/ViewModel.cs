@@ -236,12 +236,8 @@ namespace LookupListUpdater
         {
             if (abortOperation()) return true;
 
-            if (RecentProjects.Count > 0 &&
-                !System.IO.File.Exists(RecentProjects[0]) &&
-                RecentProjects[0] == string.Empty)
-            {
-                RecentProjects.RemoveAt(0);
-            }
+            RecentProjects = RecentProjects.Where(n => !String.IsNullOrEmpty(n)).ToList();
+
             StringCollection collection = new StringCollection();
             collection.AddRange(RecentProjects.ToArray());
             Properties.Settings.Default.RecentProjects = collection;
@@ -317,6 +313,7 @@ namespace LookupListUpdater
         {
             if (abortOperation()) return;
             model.NewTableDefs();
+            RaisePropertyChanged(SqlTableDefs_name);
             RecentProjects.Insert(0, string.Empty);
             SelectedTable = SqlTableDefs[0];
             projectLoaded = false;
@@ -426,7 +423,7 @@ namespace LookupListUpdater
         {
             try { IsRunning = true;
                 string msg = null;
-                bool result = model.UpdateProfile(SelectedTable.MyName, ref msg);
+                bool result = model.UpdateProfile(SelectedTable.TableDefinitioName, ref msg);
                 MessageBox.Show(
                     (result ? "Success" : "Failed") + "\n" + msg,
                     "Lookup list update",

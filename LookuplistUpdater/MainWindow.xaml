@@ -69,7 +69,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn 
                         Header="Name" MinWidth="150"
-                        Binding="{Binding MyName, Mode=TwoWay}"
+                        Binding="{Binding TableDefinitioName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     >
                     </DataGridTextColumn>
                 </DataGrid.Columns>
