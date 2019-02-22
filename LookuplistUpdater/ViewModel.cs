@@ -147,7 +147,7 @@ namespace LookupListUpdater
             set { SelectedTable.OccProfile = value; SendPropertyChanged(); }
         }
 
-        private string OcTablename_name = "OccFieldname";
+        private string OcTablename_name = "OccTablename";
         public string OccTablename
         {
             get { return SelectedTable.OccTablename; }
