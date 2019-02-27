@@ -105,6 +105,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy LicenseReport.exe ..\..\..\..\subin /Y
-copy LicenseReport.exe.config. .\..\..\..\subin /Y</PostBuildEvent>
+copy LicenseReport.exe.config ..\..\..\..\subin /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>
