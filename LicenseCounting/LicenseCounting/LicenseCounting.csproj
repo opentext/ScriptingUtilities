@@ -34,26 +34,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Captaris.RightDocs.Advanced.Infrastructure">
-      <HintPath>..\..\..\..\_bin\Captaris.RightDocs.Advanced.Infrastructure.dll</HintPath>
+      <HintPath>..\..\..\..\..\_bin\Captaris.RightDocs.Advanced.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="CaptureCenter.Reporting.Custom">
-      <HintPath>..\..\..\..\_bin\CaptureCenter.Reporting.Custom.dll</HintPath>
+      <HintPath>..\..\..\..\..\_bin\CaptureCenter.Reporting.Custom.dll</HintPath>
     </Reference>
     <Reference Include="DOKuStar.Data.Xml">
-      <HintPath>..\..\..\..\_bin\DOKuStar.Data.Xml.dll</HintPath>
+      <HintPath>..\..\..\..\..\_bin\DOKuStar.Data.Xml.dll</HintPath>
     </Reference>
     <Reference Include="DOKuStar.Runtime">
-      <HintPath>..\..\..\..\_bin\DOKuStar.Runtime.dll</HintPath>
+      <HintPath>..\..\..\..\..\_bin\DOKuStar.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="DOKuStar.Runtime.ScriptingHost">
-      <HintPath>..\..\..\..\_bin\DOKuStar.Runtime.ScriptingHost.dll</HintPath>
+      <HintPath>..\..\..\..\..\_bin\DOKuStar.Runtime.ScriptingHost.dll</HintPath>
     </Reference>
     <Reference Include="DOKuStar.Stats.Api">
-      <HintPath>..\..\..\..\_bin\DOKuStar.Stats.Api.dll</HintPath>
+      <HintPath>..\..\..\..\..\_bin\DOKuStar.Stats.Api.dll</HintPath>
     </Reference>
     <Reference Include="DOKuStar.Stats.Common, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ca08498c01dc4d5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\_bin\DOKuStar.Stats.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\_bin\DOKuStar.Stats.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

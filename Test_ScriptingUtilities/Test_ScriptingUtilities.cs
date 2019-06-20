@@ -18,7 +18,7 @@ namespace ScriptingUtilities
     public class Test_ScriptingUtilities
     {
         private string sampleDocumentDir;
-        private string repBase = @"\\JSCHACHTGXY3JC2\DOKuStarDispatchData\Repositories\Standard\";
+        private string repBase = @"\\JSCHACHT-01\DOKuStarDispatchData\Repositories\Standard\";
 
         public Test_ScriptingUtilities()
         {
@@ -32,13 +32,23 @@ namespace ScriptingUtilities
         [TestMethod]
         public void TestAndExplore()
         {
-            string repository = repBase + "Profile1.jc1.0001";
-            string dataPoolFile = Path.Combine(repository, "56801_o129408_wj9_Dat.data");
+            string repository = repBase + "Filesion.jc14.0000";
+            string dataPoolFile = Path.Combine(repository, "6406_o9712_wj32_Rec.data");
             DataPool pool = new DataPool();
             pool.Load(dataPoolFile);
 
-            Source source = pool.RootNode.Documents[0].Sources[0];
+            Document doc = pool.RootNode.Documents[0];
+            Source source = doc.Sources[0];
+            PageInstance pi = source.PageInstance;
+            ImageSourceInstance isi = (source.PageInstance.ParentInstance as ImageSourceInstance);
             string inputFile = (source.PageInstance.ParentInstance as ImageSourceInstance).Url;
+
+            string fAtt = pool.RootNode.Annotations["Filename"].Value;
+            string path = Path.GetDirectoryName(fAtt);
+            string file = Path.GetFileNameWithoutExtension(fAtt);
+
+            for (int i = 1; i < doc.Sources.Count; )
+                doc.Sources.RemoveAt(i);
         }
 
         [TestMethod]
@@ -415,4 +425,4 @@ namespace ScriptingUtilities
             Assert.IsTrue(gotError);
         }
     }
-}
+ }

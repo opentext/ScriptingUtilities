@@ -649,6 +649,33 @@ namespace ScriptingUtilities
         }
         #endregion
 
+        #region StoreTableAsCVS
+        public static void StoreTableAsCVS(DataPool pool, 
+            string folderfield, string filefield,
+            string TableFieldName, List<string> columnNames)
+        {
+            foreach (Document doc in pool.RootNode.Documents)
+            {
+                string result = string.Empty;
+                foreach (string col in columnNames) result += col + ",";
+
+                Table table = doc.Fields[TableFieldName] as Table;
+                foreach (TableRow row in table.Rows)
+                {
+                    result += "\n";
+                    foreach (string col in columnNames) result += row.Fields[col].Value + ",";
+                }
+
+                string basepath = doc.Annotations["FileOutputPath"].Value;
+                string filepath = Path.Combine(basepath, doc.Fields[folderfield].Value, doc.Fields[filefield].Value);
+                System.IO.FileInfo file = new System.IO.FileInfo(filepath);
+                file.Directory.Create();
+                File.WriteAllText(filepath, result);
+            }
+        }
+
+        #endregion
+
         #region Utlilities
         private static void loadSchema(DataPool pool)
         {
