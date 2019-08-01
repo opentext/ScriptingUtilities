@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
 using DOKuStar.Data.Xml;
 using DOKuStar.Runtime.ScriptingHost;
 using DOKuStar.Diagnostics.Tracing;
+using DOKuStar.Extraction.Result;
+using System.Xml;
 
 namespace ScriptingUtilities
 {
@@ -25,10 +27,12 @@ namespace ScriptingUtilities
             DataPool pool, string spec, bool allPages, int nofDigits, bool refImage, bool ocrImage,
             int orientation, int position, int offsetX, int offsetY)
         {
-            NameSpecParser nsp = new NameSpecParser();
-            nsp.BatchId = "BatchId"; // Replace so it as "no operation"
-            nsp.DocumentNumber = "DocumentNumber"; // Replace so it as "no operation"
-            nsp.ValueList = new List<KeyValuePair<string, string>>();
+            NameSpecParser nsp = new NameSpecParser()
+            {
+                BatchId = "BatchId", // Replace so it as "no operation"
+                DocumentNumber = "DocumentNumber", // Replace so it as "no operation"
+                ValueList = new List<KeyValuePair<string, string>>(),
+            };
             List<NameSpecParser.SubstituteItem> lsi = nsp.Parse(spec);
             string result = string.Empty;
 
@@ -45,7 +49,7 @@ namespace ScriptingUtilities
                     string imprint = nsp.ComposeResultString(lsi);
                     if (pagenumber == 1) result = imprint;
 
-                    
+
                     if (refImage)
                     {
                         SourceInstance si = ims.SelectInstance("ref");
@@ -239,8 +243,7 @@ namespace ScriptingUtilities
                 IField f = doc.Fields[fieldname];
                 if (f == null) continue;
 
-                List<IField> fl = new List<IField>();
-                fl.Add(f);
+                List<IField> fl = new List<IField>() { f };
                 foreach (IField altField in f.Alternatives) fl.Add(altField);
 
                 foreach (IField ff in fl)
@@ -311,7 +314,7 @@ namespace ScriptingUtilities
             {
                 //if (position > doc.Sources.Count) position = doc.Sources.Count;
                 pool.RootNode.Documents.Insert(Math.Min(position, pool.RootNode.Documents.Count), doc);
-            }            
+            }
         }
         #endregion
 
@@ -321,7 +324,7 @@ namespace ScriptingUtilities
             if (parent >= pool.RootNode.Documents.Count) return;
 
             // No child means all childs
-            childs = Enumerable.Range(0, pool.RootNode.Documents.Count ).Where(n => n != parent).ToArray();
+            childs = Enumerable.Range(0, pool.RootNode.Documents.Count).Where(n => n != parent).ToArray();
 
             // Copy pages from child to parent
             foreach (int child in childs.Distinct())
@@ -334,8 +337,8 @@ namespace ScriptingUtilities
             // Delete childs
             foreach (int child in childs.OrderByDescending(n => n).Distinct())
             {
-               if(child < pool.RootNode.Documents.Count)
-                    pool.RootNode.Documents.RemoveAt(child);   
+                if (child < pool.RootNode.Documents.Count)
+                    pool.RootNode.Documents.RemoveAt(child);
             }
         }
         #endregion
@@ -378,8 +381,8 @@ namespace ScriptingUtilities
 
                 // Convert the HTML Body text of the email into an image source via intermediate temp file
                 string resultFile = Path.Combine(
-                    cacheFolder, 
-                    Path.GetFileName(Path.GetTempFileName()).Replace(".tmp", ".pdf") 
+                    cacheFolder,
+                    Path.GetFileName(Path.GetTempFileName()).Replace(".tmp", ".pdf")
                 );
 
                 // Handle embedded and not embedded documents
@@ -397,8 +400,7 @@ namespace ScriptingUtilities
 
                 // Create document and add image source
                 Document doc = new Document(pool, documentClass);
-                ImageSource source = new ImageSource(pool, resultFile);
-                source.IsArchived = false;
+                ImageSource source = new ImageSource(pool, resultFile) { IsArchived = false };
                 doc.Sources.Add(source);
 
                 // Insert new document into data pool
@@ -554,7 +556,7 @@ namespace ScriptingUtilities
         #region Table automation column-wise
         public const string TableColumnWise_AnnotationName = "SU_TableColumnWise";
         public const string TableColumnWiseMapping_AnnotationName = "SU_TableColumnWiseMapping";
-        public static void TableColumnWise(DataPool pool, string tableName, Dictionary<string,string> nameMapping = null)
+        public static void TableColumnWise(DataPool pool, string tableName, Dictionary<string, string> nameMapping = null)
         {
             List<KeyValuePair<string, string>> mapping = null;
             if (nameMapping != null)
@@ -565,7 +567,7 @@ namespace ScriptingUtilities
                 doc.Annotations.Add(new Annotation(pool, TableColumnWise_AnnotationName, tableName));
                 if (nameMapping != null)
                     doc.Annotations.Add(new Annotation(pool,
-                        TableColumnWiseMapping_AnnotationName, 
+                        TableColumnWiseMapping_AnnotationName,
                         SIEESerializer.ObjectToString(mapping)));
             }
             //File.WriteAllText(@"c:\temp\tt.txt", TableColumnWiseMapping_AnnotationName + " -5- ");
@@ -588,7 +590,7 @@ namespace ScriptingUtilities
             }
             catch (Exception e)
             {
-                trace.WriteError("extractor.Extract(" + inputFile + ", " + group +") failed: " + e.Message);
+                trace.WriteError("extractor.Extract(" + inputFile + ", " + group + ") failed: " + e.Message);
                 return string.Empty;
             }
         }
@@ -610,10 +612,10 @@ namespace ScriptingUtilities
             }
         }
 
-        public static void GetVatRates(DataPool pool, 
-            string invoiceTotalsFieldName, 
+        public static void GetVatRates(DataPool pool,
+            string invoiceTotalsFieldName,
             string tableFieldName,
-            Dictionary<string,string> columnMameMapping = null)
+            Dictionary<string, string> columnMameMapping = null)
         {
             List<string> columnNames = new List<string>() { "TotalAmount", "NetAmount", "VatAmount", "VatRate", "Currency" };
             Dictionary<string, string> mapping = new Dictionary<string, string>();
@@ -621,10 +623,10 @@ namespace ScriptingUtilities
                 mapping[columnName] = columnName;
 
             if (columnMameMapping != null) foreach (string key in columnMameMapping.Keys)
-                if (!mapping.ContainsKey(key))
-                    throw new Exception("Unknown column name " + key);
-                else
-                    mapping[key] = columnMameMapping[key];
+                    if (!mapping.ContainsKey(key))
+                        throw new Exception("Unknown column name " + key);
+                    else
+                        mapping[key] = columnMameMapping[key];
 
             loadSchema(pool);
 
@@ -650,7 +652,7 @@ namespace ScriptingUtilities
         #endregion
 
         #region StoreTableAsCVS
-        public static void StoreTableAsCVS(DataPool pool, 
+        public static void StoreTableAsCVS(DataPool pool,
             string folderfield, string filefield,
             string TableFieldName, List<string> columnNames)
         {
@@ -676,6 +678,115 @@ namespace ScriptingUtilities
 
         #endregion
 
+        #region OcrDetails
+        private static DataPool ocrDetailsPool;
+        private static Dictionary<string, List<OcrCharacter>> ocrDetailsDResultCache = new Dictionary<string, List<OcrCharacter>>();
+
+        public static void OcrDetails_SetDataPool(DataPool pool)
+        {
+            ocrDetailsPool = pool;
+            ocrDetailsDResultCache.Clear();
+        }
+
+        public static OcrCharacter[] OcrDetails_GetDetails(int docIndex, string fieldname)
+        {
+            Field f = ocrDetailsPool.RootNode.Documents[docIndex].Fields[fieldname] as Field;
+            string dokustarResultFile = ocrDetails_findPage(f.Sources[0]);
+
+            if (!ocrDetailsDResultCache.ContainsKey(dokustarResultFile))
+                ocrDetailsDResultCache[dokustarResultFile] = loadDokustarResult(dokustarResultFile);
+
+            OcrCharacter[] result =
+                ocrDetailsDResultCache[dokustarResultFile]
+                .Where(n => n.Box.X >= f.Zone.X)
+                .Where(n => n.Box.Y >= f.Zone.Y)
+                .Where(n => n.Box.X + n.Box.Width <= f.Zone.X + f.Zone.Width)
+                .Where(n => n.Box.Y + n.Box.Height <= f.Zone.Y + f.Zone.Height)
+                .ToArray();
+
+            return result;
+        }
+
+        public static string OcrCharactersToString(OcrCharacter[] ocrCharacters, bool spaces = true)
+        {
+            string result = string.Empty;
+
+            int medianWidths = 0;
+            int[] widths = ocrCharacters.Select(n => n.Box.Width).OrderBy(n => n).ToArray();
+            if (widths.Length <= 1)
+                spaces = false;
+            else
+                medianWidths = widths[widths.Length / 2];
+
+            for (int i = 0; i < ocrCharacters.Length; i++)
+            {
+                if (spaces && i > 0)
+                {
+                    Rectangle prev = ocrCharacters[i-1].Box;
+                    Rectangle curr = ocrCharacters[i].Box;
+                    if (curr.X - (prev.X + prev.Width) > medianWidths / 1.5)
+                        result += " ";
+                }
+                result += ocrCharacters[i].Choices[0].Character;
+            }
+            //foreach (OcrCharacter ochar in ocrCharacters)
+            //{
+            //    result += ochar.Choices[0].Character;
+            //}
+            return result;
+        }
+
+        private static List<OcrCharacter> loadDokustarResult(string filename)
+        {
+            List<OcrCharacter> result = new List<OcrCharacter>();
+
+            DResult dr = new DResult();
+            dr.FileOpen(filename);
+            XmlElement sceXml = dr.Sce.ThisXmlNode as XmlElement;
+
+            foreach (XmlElement character in sceXml.SelectNodes("ocr/characterdetails/line/geoword/logword/char"))
+            {
+                string box = character.SelectNodes("box")[0].InnerText;
+                string ocr = character.SelectNodes("choices")[0].InnerText;
+
+                string[] rectVals = box.Split(' ');
+                Rectangle r = new Rectangle(
+                    int.Parse(rectVals[0]), int.Parse(rectVals[1]),
+                    int.Parse(rectVals[2]), int.Parse(rectVals[3]));
+
+                List<Choice> choices = new List<Choice>();
+                string[] choicesVals = ocr.Split(' ').Skip(1).ToArray();
+                for (int i = 0; i < choicesVals.Length; i = i + 2)
+                    choices.Add(new Choice() { Character = choicesVals[i][0], Confidence = int.Parse(choicesVals[1]) });
+
+                result.Add(new OcrCharacter() { Box = r, Choices = choices });
+            }
+            return result;
+        }
+
+        public struct Choice
+        {
+            public char Character { get; set; }
+            public int Confidence { get; set; }
+        }
+        public struct OcrCharacter
+        {
+            public Rectangle Box { get; set; }
+            public List<Choice> Choices {get; set;}
+        }
+
+        private static string ocrDetails_findPage(Source source)
+        {
+            foreach (ImageSourceInstance isi in ocrDetailsPool.RootNode.SourceInstances)
+                foreach (PageInstance pi in isi.Pages)
+                    if (pi.Guid == source.Guid)
+                        foreach (VariantSourceInstance ivi in pi.Variants)
+                            if (ivi is FullTextVariantInstance)
+                                return ivi.Url;
+            return null;
+        }
+        #endregion
+
         #region Utlilities
         private static void loadSchema(DataPool pool)
         {
@@ -684,6 +795,5 @@ namespace ScriptingUtilities
             pool.DataSchema = schema;
         }
         #endregion
-
     }
 }

@@ -50,7 +50,7 @@ namespace ScriptingUtilities
 
             switch (ScriptingManager.GetScriptName(pool))
             {
-                case ScriptingManager.prepareImportName: return getSchema(pool);
+                case ScriptingManager.prepareImportName: return prepareImportSequence((pool));
                 case ScriptingManager.importName: break;
                 case ScriptingManager.separationName: break;
                 case ScriptingManager.classificationName: break;
@@ -58,8 +58,14 @@ namespace ScriptingUtilities
                 case ScriptingManager.exportName: break;
                 case ScriptingManager.afterPDFGenerationName: return pdfCompression(pool);
                 case ScriptingManager.afterExportName: break;
+                case ScriptingManager.mainRecognitionExceptionName: return recognitionExceptionSequence(pool);
             }
             return data;
+        }
+
+        private XmlDocument prepareImportSequence(DataPool pool)
+        {
+            return getSchema(pool);
         }
 
         private XmlDocument indexingSequence(DataPool pool)
@@ -74,6 +80,11 @@ namespace ScriptingUtilities
         {
             pool.RootNode.Annotations.Add(new Annotation(pool, 
                 ScriptingUtilities.SchemaFileName_AnnotationName, getSchemaFileName()));
+            return pool.XmlDocument;
+        }
+
+        private XmlDocument recognitionExceptionSequence(DataPool pool)
+        {
             return pool.XmlDocument;
         }
         #endregion

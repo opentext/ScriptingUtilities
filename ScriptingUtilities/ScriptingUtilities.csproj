@@ -43,6 +43,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\_bin\DOKuStar.Diagnostics.Tracing.dll</HintPath>
     </Reference>
+    <Reference Include="DOKuStar.Extraction.Result, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ca08498c01dc4d5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\_bin\DOKuStar.Extraction.Result.dll</HintPath>
+    </Reference>
     <Reference Include="DOKuStar.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7ca08498c01dc4d5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\_bin\DOKuStar.Runtime.dll</HintPath>

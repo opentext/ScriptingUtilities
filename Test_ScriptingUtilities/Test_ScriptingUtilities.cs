@@ -17,8 +17,8 @@ namespace ScriptingUtilities
     [TestClass]
     public class Test_ScriptingUtilities
     {
-        private string sampleDocumentDir;
-        private string repBase = @"\\JSCHACHT-01\DOKuStarDispatchData\Repositories\Standard\";
+        private readonly string sampleDocumentDir;
+        private readonly string repBase = @"\\JSCHACHT-01\DOKuStarDispatchData\Repositories\Standard\";
 
         public Test_ScriptingUtilities()
         {
@@ -423,6 +423,33 @@ namespace ScriptingUtilities
             try { ScriptingUtilities.GetVatRates(data, "TotalAmount", "Taxes", map); }
             catch { gotError = true; }
             Assert.IsTrue(gotError);
+        }
+
+        [TestMethod]
+        public void Test_OcrDetails()
+        {
+            // Profile: OcrDetails
+            // Document: 07_Insurance_Quote__Story_.tif
+            string repository = @"\\JSCHACHT-01\DOKuStarDispatchData\Repositories\Standard\OcrDails.jc12.0000";
+            string dataPoolFile = Path.Combine(repository, "46202_o199622_wj8_Rec.data");
+            DataPool data = new DataPool();
+            data.Load(dataPoolFile);
+
+            ScriptingUtilities.OcrDetails_SetDataPool(data);
+            ScriptingUtilities.OcrCharacter[] details;
+            string allChars;
+
+            details = ScriptingUtilities.OcrDetails_GetDetails(0, "Amount1_Extracted");
+            allChars = ScriptingUtilities.OcrCharactersToString(details);
+            Assert.AreEqual("$ 3,701.95", allChars);
+
+            details = ScriptingUtilities.OcrDetails_GetDetails(0, "Amount2_Extracted");
+            allChars = ScriptingUtilities.OcrCharactersToString(details);
+            Assert.AreEqual("$ 355.30", allChars);
+
+            details = ScriptingUtilities.OcrDetails_GetDetails(0, "Date_Extracted");
+            allChars = ScriptingUtilities.OcrCharactersToString(details);
+            Assert.AreEqual("January 24, 2010", allChars);
         }
     }
  }
