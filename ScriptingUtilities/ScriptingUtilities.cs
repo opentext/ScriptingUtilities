@@ -729,10 +729,6 @@ namespace ScriptingUtilities
                 }
                 result += ocrCharacters[i].Choices[0].Character;
             }
-            //foreach (OcrCharacter ochar in ocrCharacters)
-            //{
-            //    result += ochar.Choices[0].Character;
-            //}
             return result;
         }
 
@@ -784,6 +780,32 @@ namespace ScriptingUtilities
                             if (ivi is FullTextVariantInstance)
                                 return ivi.Url;
             return null;
+        }
+        #endregion
+
+        #region OcrDetails
+        public static void SeparateOnValueChange(DataPool pool, string fieldname)
+        {
+            List<Document> newDocuments = new List<Document>();
+            Document firstDoc = pool.RootNode.Documents[0];
+            newDocuments.Add(firstDoc);
+            string currentValue = firstDoc.Fields[fieldname].Value;
+
+            for(int i = 1; i < pool.RootNode.Documents.Count; i++)
+            {
+                Document doc = pool.RootNode.Documents[i];
+                IField f = doc.Fields[fieldname];
+                if (f.State == DataState.Empty || f.Value == currentValue)
+                    newDocuments.Last().Sources.Add(doc.Sources[0]);
+                else
+                {
+                    currentValue = f.Value;
+                    newDocuments.Add(doc);
+                }
+            }
+            pool.RootNode.Documents.Clear();
+            foreach (Document doc in newDocuments)
+                pool.RootNode.Documents.Add(doc);
         }
         #endregion
 
