@@ -53,7 +53,7 @@ namespace ScriptingUtilities
                 case ScriptingManager.prepareImportName: return prepareImportSequence((pool));
                 case ScriptingManager.importName: break;
                 case ScriptingManager.separationName: break;
-                case ScriptingManager.classificationName: break;
+                case ScriptingManager.classificationName: return classificationSequence(pool);
                 case ScriptingManager.indexingName: return indexingSequence(pool);
                 case ScriptingManager.exportName: break;
                 case ScriptingManager.afterPDFGenerationName: return pdfCompression(pool);
@@ -66,6 +66,12 @@ namespace ScriptingUtilities
         private XmlDocument prepareImportSequence(DataPool pool)
         {
             return getSchema(pool);
+        }
+
+        private XmlDocument classificationSequence(DataPool pool)
+        {
+            XmlDocument xd;
+            return classifyFromFirstClassifiedPage(pool);
         }
 
         private XmlDocument indexingSequence(DataPool pool)
@@ -85,6 +91,30 @@ namespace ScriptingUtilities
 
         private XmlDocument recognitionExceptionSequence(DataPool pool)
         {
+            return pool.XmlDocument;
+        }
+        #endregion
+
+        #region Classify from first (correctly) classified page
+        private XmlDocument classifyFromFirstClassifiedPage(DataPool pool)
+        {
+            string annotationName =  "ClassifyFromFirstClassifiedPage";
+            if(pool.RootNode.Annotations[annotationName] == null) return pool.XmlDocument;
+
+            foreach (Document doc in pool.RootNode.Documents)
+            {
+                IField ruleResult = doc.GetClassificationResultRules();
+                if (ruleResult.State == DataState.Error)
+                    foreach (IDataNode node in ruleResult.Alternatives)
+                    {
+                        Field f = (Field)node;
+                        if (f.State == DataState.Ok)
+                        {
+                            doc.SetClassDecisionField(f.Value);
+                            break;
+                        }
+                    }
+            }
             return pool.XmlDocument;
         }
         #endregion
